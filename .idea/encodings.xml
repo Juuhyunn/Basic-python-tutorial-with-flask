@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/book_modu/data/seoul.csv" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/book_modu/data/unit06_seoul.csv" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/book_modu/data/unit07_age.csv" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/book_modu/data/unit08_age.csv" charset="x-windows-949" />
+  </component>
+</project>

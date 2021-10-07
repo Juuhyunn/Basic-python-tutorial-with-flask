@@ -1,0 +1,15 @@
+from basic.numpy_lib.models import NumpyLib
+if __name__ == '__main__':
+    this = NumpyLib()
+    this.show_numpy()
+    # this.numpy_choice()
+    # this.numpy_not_need_for_loop()
+    # this.indexing_slicing()
+    # this.array_have_to_one_type()
+    # this.np_zeros()
+    # this.np_ones()
+    # this.np_eye()
+    # this.np_arange()
+    # this.np_linespace()
+    # this.np_mask()
+    # this.np_bubble()
