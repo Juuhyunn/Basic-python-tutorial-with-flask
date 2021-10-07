@@ -1,4 +1,4 @@
-from book_algorithm_interview.loop_tutorial.models import OneToTenSum
+from book_algorithm_interview.chap_02_program_language.models import OneToTenSum
 from icecream import ic
 
 
