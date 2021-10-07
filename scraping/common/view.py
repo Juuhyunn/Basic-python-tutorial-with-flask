@@ -1,5 +1,5 @@
-from scraping.models.dataset import Dataset
-from scraping.models.service import Service
+from scraping.common.dataset import Dataset
+from scraping.common.service import Service
 
 
 class View(object):

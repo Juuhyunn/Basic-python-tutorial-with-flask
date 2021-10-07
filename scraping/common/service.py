@@ -1,4 +1,4 @@
-from scraping.models.dataset import Dataset
+from scraping.common.dataset import Dataset
 import pandas as pd
 
 class Service(object):
