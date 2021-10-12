@@ -40,26 +40,31 @@ class Conversion(object):
     def create_tuple(self) -> ():
         return tuple(range(10))
 
-    def tuple_to_list(self, tpl) -> []:
+    def tuple_to_list(self, tpl: ()) -> []:
         return list(tpl)
 
-    def int_to_float(self, lst) -> []:
+    def int_to_float(self, lst: []) -> []:
         return [float(i) for i in lst]
 
-    def float_to_int(self, lst) -> []:
+    def float_to_int(self, lst: []) -> []:
         return [int(i) for i in lst]
 
-    def list_to_dictionary(self, lst) -> {}:
-        return {str(i): i for i in lst}
+    def list_to_dictionary(self, lst: []) -> {}:
+        return {float(i): i for i in lst}
 
-    def hello_to_tuple(self, string) -> ():
+    def hello_to_tuple(self, string: str) -> ():
         return tuple(string)
 
-    def hello_to_list(self, tpl) -> []:
+    def hello_to_list(self, tpl: ()) -> []:
         return list(tpl)
 
-    def dictionary_to_dataframe(self, dic) -> object:
-        return pd.DataFrame(dic.keys(), dic.values())
+    def dictionary_to_dataframe(self, dic: {}) -> object:
+        # return pd.DataFrame(dic.keys(), dic.values())
+        # test = self.hello_to_list('hello')
+        # return pd.DataFrame(data=dic, index=dic)
+        # return pd.DataFrame(columns=dic)
+        # return pd.DataFrame(index=dic, columns=test)
+        return pd.DataFrame.from_dict(data=dic, orient='index', dtype=None, columns=None)
 
 
 if __name__ == '__main__':
