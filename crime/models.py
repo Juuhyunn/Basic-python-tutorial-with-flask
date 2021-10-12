@@ -51,11 +51,6 @@ class CrimeCctvMode(object):
         grouped = result.groupby('구별')
         crime_filter = grouped['발생 총합', '검거 총합'].sum()
         crime_filter.to_csv('../crime/data/new_data/test.csv')
-
-
-
-
-
         # test = pd.DataFrame(columns=crime_model.columns)
         # self.printer.dframe(test)
         # for i in range(len(crime_model.index)-1):
