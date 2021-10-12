@@ -50,7 +50,7 @@ class Conversion(object):
         return [int(i) for i in lst]
 
     def list_to_dictionary(self, lst: []) -> {}:
-        return {float(i): i for i in lst}
+        return {str(i): i for i in lst}
 
     def hello_to_tuple(self, string: str) -> ():
         return tuple(string)
@@ -65,6 +65,8 @@ class Conversion(object):
         # return pd.DataFrame(columns=dic)
         # return pd.DataFrame(index=dic, columns=test)
         return pd.DataFrame.from_dict(data=dic, orient='index', dtype=None, columns=None)
+        # return pd.DataFrame.from_dict(data=dic, orient='columns', dtype=None)
+        # return pd.DataFrame.from_dict(dic)
 
 
 if __name__ == '__main__':
