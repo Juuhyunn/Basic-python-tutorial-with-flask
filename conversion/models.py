@@ -50,6 +50,18 @@ class Conversion(object):
         lst = self.three_multi_change_str(self.create_tuple())
         ic(type(lst))
         ic(lst)
+        print('Q13. 딕셔너리의 key값을 index로 정하여 데이터 프레임 만들어 출력')
+        dt = self.abc_dict()
+        ic(type(dt))
+        ic(dt)
+        print('Q13. 딕셔너리의 key값을 index로 정하여 데이터 프레임 만들어 출력')
+        df = self.orient_index(dt)
+        ic(type(df))
+        ic(df)
+        print('Q14. 딕셔너리의 key값을 columns으로 정하여 데이터 프레임 만들어 출력')
+        df = self.orient_columns(dt)
+        ic(type(df))
+        ic(df)
 
     def create_tuple(self) -> ():
         return tuple(range(10))
@@ -97,6 +109,15 @@ class Conversion(object):
     def three_multi_change_str(self, tpl: ()) -> []:
         # return [i for i in tpl if i%3 == 0]
         return list(map(lambda x: str(x) if x%3 == 0 else x, tpl))
+
+    def abc_dict(self):
+        return {'a': [1, 2, 3], 'b': [4, 5, 6], 'c': [7, 8, 9]}
+
+    def orient_index(self, dt):
+        return pd.DataFrame.from_dict(dt, orient='index')
+
+    def orient_columns(self, dt):
+        return pd.DataFrame.from_dict(dt)
 
 
 if __name__ == '__main__':
