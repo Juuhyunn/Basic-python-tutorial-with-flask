@@ -62,6 +62,7 @@ class Conversion(object):
         df = self.orient_columns(dt)
         ic(type(df))
         ic(df)
+        pd
 
     def create_tuple(self) -> ():
         return tuple(range(10))
