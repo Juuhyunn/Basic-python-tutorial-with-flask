@@ -164,6 +164,11 @@ class MyPandas(object):
         # result = pd.DataFrame.from_dict(dt, orient='index', columns=subject)
         # result.to_csv('data/random_score.csv', index=False)
         # return result
+        score = [list(map(lambda x: randint(1, 100), [i for i in range(4)])) for i in range(10)]
+        students = ["".join([random.choice(string.ascii_letters) for i in range(5)]) for i in range(10)]
+        subject = ['국어', '영어', '수학', '사회']
+        return pd.DataFrame(score, index=students, columns=subject)
+
 
 
         ''' 
