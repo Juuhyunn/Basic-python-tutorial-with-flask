@@ -170,7 +170,6 @@ class MyPandas(object):
         return pd.DataFrame(score, index=students, columns=subject)
 
 
-
         ''' 
         Q5 4번 문제를 loc 를 통해 동일하게 작성
         ic| df5:        국어  영어  수학  사회
@@ -186,8 +185,6 @@ class MyPandas(object):
                  GQzmY  59  37  80  27
         '''
     def copy_random_score(self, df: object) -> object:
-        # df = pd.read_csv('data/random_score.csv')
-        # col = list(df.columns)
         idx = list(df.index)
         result = pd.DataFrame(columns=df.columns, index=idx)
         for i in range(len(idx)):
@@ -216,8 +213,7 @@ class MyPandas(object):
         '''
 
     def only_index(self, df: object) -> object:
-        idx = list(df.index)
-        return df.loc[idx[3]]
+        return df.loc[list(df.index)[3]]
         ''' 
         Q5-3 기존 학생들에게 과학과목과 점수를 랜덤으로 추가
         ic| df5:     국어  영어  수학  사회  과학
@@ -417,7 +413,6 @@ class MyPandas(object):
                                                             f    cat  2.0       3       no
         '''
     def cat_of_age_under_3(self, df):
-
         return df[[df['age']<3] and df['animal']=='cat']
 
         '''        
