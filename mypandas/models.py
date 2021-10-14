@@ -91,6 +91,72 @@ class MyPandas(object):
         ic(type(cat_age_3))
         ic(cat_age_3)
 
+        # df_by_other_method = pd.DataFrame({
+        #     '국어': (lambda : randint(1, 100))(),
+        #     '영어': self.score(),
+        #     '수학': self.score(),
+        #     '사회': self.score()
+        # }, index=[self.id()])
+
+        # for i in range(1, 10):
+        #     df_by_other_method.loc[self.id()] = {
+        #         '국어': self.score(),
+        #         '영어': self.score(),
+        #         '수학': self.score(),
+        #         '사회': self.score()
+        #     }
+        # for i in range(1, 10):
+        #     df_by_other_method.loc["".join([random.choice(string.ascii_letters) for i in range(5)])] = {
+        #         '국어': (lambda : randint(1, 100))(),
+        #         '영어': (lambda : randint(1, 100))(),
+        #         '수학': (lambda : randint(1, 100))(),
+        #         '사회': (lambda : randint(1, 100))()
+        #     }
+        sub = ['국어', '영어', '수학', '사회']
+        # for i in range(1, 10):
+        #     df_by_other_method.loc[(lambda : "".join([random.choice(string.ascii_letters) for i in range(5)]))()] = {
+        #         i: (lambda : randint(1, 100))() for i in sub }
+        # for i in range(1, 10):
+        #     df_by_other_method.loc[(lambda : "".join([random.choice(string.ascii_letters) for i in range(5)]))()] = {
+        #         i: (lambda : randint(1, 100))() for i in sub }
+
+        # for i in range(1, 10):
+        #     df_by_other_method.loc[(lambda: "".join([random.choice(string.ascii_letters) for i in range(5)]))()] = list(map(lambda x: randint(1, 100), sub))
+
+        # for i in range(1, 10):
+        #     df_by_other_method.loc[
+        #         (lambda: "".join(
+        #             list(map(lambda x: random.choice(string.ascii_letters), range(5)))
+        #         ))()
+        #     ] = list(
+        #         map(
+        #             lambda x: randint(1, 100), sub
+        #         )
+        #     )
+        # for i in range(1, 10):
+        #     df_by_other_method.loc[
+        #         (lambda: "".join(
+        #             list(map(lambda x: random.choice(string.ascii_letters), range(5)))
+        #         ))()
+        #     ] = list(
+        #         map(
+        #             lambda x: randint(1, 100), sub
+        #         )
+        #     )
+        test = dict(
+            zip(
+                list(
+                    map(lambda x: "".join(
+                        list(map(lambda x: random.choice(string.ascii_letters), range(5)))), range(10))),
+                        list(map(
+                     lambda x: randint(1, 100), sub
+                 )), range(10)))
+        df_by_other_method = pd.DataFrame(data = test, columns=sub)
+
+
+
+        ic(test)
+
         '''
         Q1. 다음 결과 출력
            a  b  c
@@ -190,6 +256,7 @@ class MyPandas(object):
         for i in range(len(idx)):
             result.loc[idx[i]] = df.loc[idx[i]]
         return result
+
         ''' 
         Q5-1 국어 점수만 출력
                              hVoGW    93
