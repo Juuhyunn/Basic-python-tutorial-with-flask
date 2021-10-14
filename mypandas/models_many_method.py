@@ -10,163 +10,91 @@ class MyPandas(object):
     def __init__(self):
         print('### PANDAS QUIZ ###')
         print("Q1. 다음 결과 출력\n   a  b  c\n1  1  3  5\n2  2  4  6")
-        # df = pd.DataFrame.from_dict(data={'1': [1, 3, 5], '2': [2, 4, 6]}, orient='index', columns=['a', 'b', 'c'])
-        df = pd.DataFrame(data={'a': [1, 2], 'b': [3, 4], 'c': [5, 6]}, index=[1, 2])
+        df = self.quiz1_df()
         ic(type(df))
         ic(df)
-
-
         print("Q2. 다음 결과 출력\n   A   B   C\n1   1   2   3\n2   4   5   6\n3   7   8   9\n4  10  11  12")
-        # df = pd.DataFrame.from_dict(data={'1': [1, 4, 7], '2': [2, 5, 8], '3': [3, 6, 9], '4': [10, 11, 12]}, orient='index', columns=['A', 'B', 'C'])
-        # df = pd.DataFrame(data={'A': range(1, 11, 3), 'B': range(2, 12, 3), 'C': range(3, 13, 3)}, index=range(1, 5))
-        df = pd.DataFrame([[1, 2, 3],
-                             [4, 5, 6],
-                             [7, 8, 9],
-                             [10, 11, 12]], index=range(1, 5), columns=['A', 'B', 'C'])
-
+        df = self.quiz2_df()
         ic(type(df))
         ic(df)
-
-
         print("Q3. 두자리 정수를 랜덤으로 2행 3열 데이터프레임을 생성")
-        df = pd.DataFrame.from_dict(data={i: [randint(1, 99), randint(1, 99)] for i in range(3)})
+        df = self.random_df()
         ic(type(df))
         ic(df)
-
-
         print("Q4. 국어, 영어, 수학, 사회 4과목을 시험치른 10명의 학생들의 성적표 작성. 단 점수 0 ~ 100이고 학생은 랜덤 알파벳 5자리 ID 로 표기")
-        # subject = ['국어', '영어', '수학', '사회']
-        # dt = {self.id() : [self.score() for i in range(len(subject))] for j in range(10)}
-        # result = pd.DataFrame.from_dict(dt, orient='index', columns=subject)
-        # result.to_csv('data/random_score.csv', index=False)
-        # df = result
-        score = [list(map(lambda x: randint(1, 100), [i for i in range(4)])) for i in range(10)]
-        students = ["".join([random.choice(string.ascii_letters) for i in range(5)]) for i in range(10)]
-        subject = ['국어', '영어', '수학', '사회']
-        df = pd.DataFrame(score, index=students, columns=subject)
+        df = self.random_score()
         ic(type(df))
         ic(df)
-
-
         print("Q5. 4번 문제를 loc 를 통해 동일하게 작성")
-        idx = list(df.index)
-        result = pd.DataFrame(columns=df.columns, index=idx)
-        for i in range(len(idx)):
-            result.loc[idx[i]] = df.loc[idx[i]]
-        copy = result
+        copy = self.copy_random_score(df)
         ic(type(copy))
         ic(copy)
+        print("Q5. 국어 점수만 출력")
+        only_k = self.only_korean(df)
+        ic(type(only_k))
+        ic(only_k)
+        print("Q5-2 TdQOI 점수만 출력")
+        only_i = self.only_index(df)
+        ic(type(only_i))
+        ic(only_i)
+        print("Q5-3 기존 학생들에게 과학과목과 점수를 랜덤으로 추가")
+        science = self.add_science(df)
+        ic(type(science))
+        ic(science)
+        print("Q5-4 각 학생들의 점수의 총점을 표현하는 컬럼을 추가")
+        total = self.add_total(df)
+        ic(type(total))
+        ic(total)
+        print("Q5-5 각 학생들의 점수의 총합을 리스트로 출력")
+        lst = self.total_to_list(df)
+        ic(type(lst))
+        ic(lst)
+        print("Q5-6. 각 학생들의 점수의 총합과 마지막 행은 과목총점 추가해서 출력")
+        sum = self.sum_score(df)
+        ic(type(sum))
+        ic(sum)
+        print("Q5-7 방금 추가한 과목총점 삭제")
+        del_sum = self.del_sum_score(sum)
+        ic(type(del_sum))
+        ic(del_sum)
+        print("Q5-8 총점 열 기준 내림차순 정렬")
+        desc = self.desc_df(del_sum)
+        ic(type(desc))
+        ic(desc)
+        print("Q6 주어진 값으로 DataFrame 객체 생성 6-1 객체내부 정보를 출력")
+        animal = self.animal_df()
+        ic(type(animal))
+        ic(animal)
+        ic(animal.describe())
+        print("6-2 객체 상위 3열까지 출력")
+        animal_top_three = self.animal_top_three(animal)
+        ic(type(animal_top_three))
+        ic(animal_top_three)
+        print("6-3 animal과 age 컬럼만 출력")
+        animal_age = self.only_animal_age(animal)
+        ic(type(animal_age))
+        ic(animal_age)
+        print("6-4 객체의 3, 4, 8번 행에 해당하는 animal과 age 값만 출력")
+        animal_age = self.animal_age_348(animal)
+        ic(type(animal_age))
+        ic(animal_age)
+        print("6-5 visit 컬럼에서 3 초과하는 값 출력")
+        visits = self.visit_over_3(animal)
+        ic(type(visits))
+        ic(visits)
+        print("6-6 age 에서 NaN 값 출력")
+        age_nan = self.age_nan(animal)
+        ic(type(age_nan))
+        ic(age_nan)
+        print("6-7 age가 3살 미만 고양이값 출력")
+        cat_age_3 = self.cat_of_age_under_3(animal)
+        ic(type(cat_age_3))
+        ic(cat_age_3)
+
         # Q5. 외부함수 쓰지 않고 처리
         sub = ['국어', '영어', '수학', '사회']
         student = ["".join([random.choice(string.ascii_letters) for i in range(5)])]
         score = [randint(1, 100)]
-
-
-        print("Q5. 국어 점수만 출력")
-        # only_k = df['국어']
-        only_k = df.loc[:, '국어']
-        ic(type(only_k))
-        ic(only_k)
-
-
-        print("Q5-2 TdQOI 점수만 출력")
-        # only_i = df.loc[list(df.index)[3]]
-        only_i = df.iloc[3]
-        ic(type(only_i))
-        ic(only_i)
-
-
-        print("Q5-3 기존 학생들에게 과학과목과 점수를 랜덤으로 추가")
-        df.loc[:, '과학'] = [randint(1, 100) for i in range(len(list(df.index)))]
-        ic(type(df))
-        ic(df)
-
-
-        print("Q5-4 각 학생들의 점수의 총점을 표현하는 컬럼을 추가")
-        df.loc[:, '총점'] = df.sum(axis=1)
-        ic(type(df))
-        ic(df)
-
-
-        print("Q5-5 각 학생들의 점수의 총합을 리스트로 출력")
-        # lst = list(df.loc[:,'총점'])
-        lst = list(df['총점'])
-        ic(type(lst))
-        ic(lst)
-
-
-        print("Q5-6. 각 학생들의 점수의 총합과 마지막 행은 과목총점 추가해서 출력")
-        df.loc['과목 총점'] = df.sum()
-        ic(type(sum))
-        ic(sum)
-
-
-        print("Q5-7 방금 추가한 과목총점 삭제")
-        df.drop(['과목 총점'])
-        ic(type(df))
-        ic(df)
-
-
-        print("Q5-8 총점 열 기준 내림차순 정렬")
-        desc = df.sort_values('총점', ascending=False)
-        ic(type(desc))
-        ic(desc)
-
-
-        print("Q6 주어진 값으로 DataFrame 객체 생성 6-1 객체내부 정보를 출력")
-        animal = pd.DataFrame([['cat', 2.5, 1, 'yes'],
-                             ['cat', 3., 3, 'yes'],
-                             ['snake', .5, 2, 'no'],
-                             ['dog', None, 3, 'yes'],
-                             ['dog', 5., 2, 'no'],
-                             ['cat', 2., 3, 'no'],
-                             ['snake', 4.5, 1, 'no'],
-                             ['cat', None, 1, 'yes'],
-                             ['dog', 7., 2, 'no'],
-                             ['dog', 3., 1, 'no']
-                             ], index=[i for i in string.ascii_lowercase[:10]],
-                            columns=['animal', 'age', 'visits', 'priority'])
-        ic(type(animal))
-        ic(animal)
-        ic(animal.describe())
-
-
-        print("6-2 객체 상위 3열까지 출력")
-        animal_top_three = animal.loc[list(animal.index)[:3], :]
-        ic(type(animal_top_three))
-        ic(animal_top_three)
-
-
-        print("6-3 animal과 age 컬럼만 출력")
-        animal_age = animal.loc[:, ['animal', 'age']]
-        ic(type(animal_age))
-        ic(animal_age)
-
-
-        print("6-4 객체의 3, 4, 8번 행에 해당하는 animal과 age 값만 출력")
-        animal_age = animal.loc[animal.index[[3, 4, 8]], ['animal', 'age']]
-        ic(type(animal_age))
-        ic(animal_age)
-
-
-        print("6-5 visit 컬럼에서 3 초과하는 값 출력")
-        visits = animal[animal['visits']>2]
-        ic(type(visits))
-        ic(visits)
-
-
-        print("6-6 age 에서 NaN 값 출력")
-        age_nan = animal[animal['age'].isnull()]
-        ic(type(age_nan))
-        ic(age_nan)
-
-
-        print("6-7 age가 3살 미만 고양이값 출력")
-        cat_age_3 = animal[[animal['age']<3] and animal['animal']=='cat']
-        ic(type(cat_age_3))
-        ic(cat_age_3)
-
-
 
 
 
@@ -234,8 +162,11 @@ class MyPandas(object):
                  1  1  3  5
                  2  2  4  6
         '''
+    def quiz1_df(self) -> object:
+        # return pd.DataFrame.from_dict(data={'1': [1, 3, 5], '2': [2, 4, 6]}, orient='index', columns=['a', 'b', 'c'])
+        return pd.DataFrame(data={'a': [1, 2], 'b': [3, 4], 'c': [5, 6]}, index=[1, 2])
 
-        '''
+        '''         
         Q2. 다음 결과 출력
            A   B   C
         1   1   2   3
@@ -248,12 +179,23 @@ class MyPandas(object):
                  3   7   8   9
                  4  10  11  12
         '''
+    def quiz2_df(self) -> object:
+        # return pd.DataFrame.from_dict(data={'1': [1, 4, 7], '2': [2, 5, 8], '3': [3, 6, 9], '4': [10, 11, 12]}, orient='index', columns=['A', 'B', 'C'])
+        # return pd.DataFrame(data={'A': range(1, 11, 3), 'B': range(2, 12, 3), 'C': range(3, 13, 3)}, index=range(1, 5))
+        return pd.DataFrame([[1, 2, 3],
+                             [4, 5, 6],
+                             [7, 8, 9],
+                             [10, 11, 12]], index=range(1, 5), columns=['A', 'B', 'C'])
+
         ''' 
         Q3 두자리 정수를 랜덤으로 2행 3열 데이터프레임을 생성
         ic| df3:     0   1   2
                  0  95  25  74
                  1  44  24  97
         '''
+    def random_df(self) -> object:
+        return pd.DataFrame.from_dict(data={i: [randint(1, 99), randint(1, 99)] for i in range(3)})
+
         ''' 
 
         Q4 국어, 영어, 수학, 사회 4과목을 시험치른 10명의 학생들의 성적표 작성. 단 점수 0 ~ 100이고 학생은 랜덤 알파벳 5자리 ID 로 표기
@@ -277,6 +219,19 @@ class MyPandas(object):
 
     def score(self) -> int:
         return randint(1, 100)
+
+    def random_score(self) -> object:
+        # subject = ['국어', '영어', '수학', '사회']
+        # dt = {self.id() : [self.score() for i in range(len(subject))] for j in range(10)}
+        # result = pd.DataFrame.from_dict(dt, orient='index', columns=subject)
+        # result.to_csv('data/random_score.csv', index=False)
+        # return result
+        score = [list(map(lambda x: randint(1, 100), [i for i in range(4)])) for i in range(10)]
+        students = ["".join([random.choice(string.ascii_letters) for i in range(5)]) for i in range(10)]
+        subject = ['국어', '영어', '수학', '사회']
+        return pd.DataFrame(score, index=students, columns=subject)
+
+
         ''' 
         Q5 4번 문제를 loc 를 통해 동일하게 작성
         ic| df5:        국어  영어  수학  사회
@@ -291,6 +246,13 @@ class MyPandas(object):
                  lGmwZ  32  50  95   1
                  GQzmY  59  37  80  27
         '''
+    def copy_random_score(self, df: object) -> object:
+        idx = list(df.index)
+        result = pd.DataFrame(columns=df.columns, index=idx)
+        for i in range(len(idx)):
+            result.loc[idx[i]] = df.loc[idx[i]]
+        return result
+
         ''' 
         Q5-1 국어 점수만 출력
                              hVoGW    93
@@ -305,11 +267,18 @@ class MyPandas(object):
                              jHChe    59
                              Name: 국어, dtype: int64
         '''
+    def only_korean(self, df: object) -> object:
+        # return df['국어']
+        return df.loc[:, '국어']
         ''' 
         Q5-2 TdQOI 점수만 출력
         ic| TdQOI	15	42	59	67
 
         '''
+
+    def only_index(self, df: object) -> object:
+        # return df.loc[list(df.index)[3]]
+        return df.iloc[3]
         ''' 
         Q5-3 기존 학생들에게 과학과목과 점수를 랜덤으로 추가
         ic| df5:     국어  영어  수학  사회  과학
@@ -324,6 +293,11 @@ class MyPandas(object):
                  AOQFG  32  50  95   1  52
                  jHChe  59  37  80  27  39
         '''
+    def add_science(self, df: object) -> object:
+        df.loc[:,'과학'] = [randint(1, 100) for i in range(len(list(df.index)))]
+        print([randint(1, 100) for i in range(len(list(df.index)))])
+        return df
+        df.loc[:, '과학']
         ''' 
 
         Q5-4 각 학생들의 점수의 총점을 표현하는 컬럼을 추가
@@ -339,10 +313,18 @@ class MyPandas(object):
                  AOQFG  32  50  95   1  52  230
                  jHChe  59  37  80  27  39  242
         '''
+    def add_total(self, df: object) -> object:
+        df.loc[:, '총점'] = df.sum(axis=1)
+        return df
+
         ''' 
         Q5-5 각 학생들의 점수의 총합을 리스트로 출력
             ic| ls: [547, 536, 533, 319, 376, 2311]
         '''
+    def total_to_list(self, df: object) -> object:
+        # return list(df.loc[:,'총점'])
+        return list(df['총점'])
+
         ''' 
         Q5-6 각 학생들의 점수의 총합과 마지막 행은 과목총점 추가해서 출력
         ic| df5:  국어   영어   수학   사회   과학    총점
@@ -358,6 +340,10 @@ class MyPandas(object):
                  jHChe   59   37   80   27   39   242
                  과목총점   547  536  533  319  376  2311
         '''
+    def sum_score(self, df: object) -> object:
+        df.loc['과목 총점'] = df.sum()
+        return df
+
         ''' 
         Q5-7 방금 추가한 과목총점 삭제
         ic| df5:  국어  영어  수학  사회  과학   총점
@@ -372,6 +358,9 @@ class MyPandas(object):
                  AOQFG  32  50  95   1  52  230
                  jHChe  59  37  80  27  39  242
         '''
+    def del_sum_score(self, df: object) -> object:
+        return df.drop(['과목 총점'])
+
         '''                         
         Q5-8 총점 열 기준 내림차순 정렬
                  wuxIm  58  94  93  54  83  382
@@ -385,6 +374,9 @@ class MyPandas(object):
                  PAwgj  85  24  16   8  22  155
                  QkpKK  25  54  29  10   8  126
         '''
+    def desc_df(self, df: object) -> object:
+        return df.sort_values('총점', ascending=False)
+
         '''  
         Q6 주어진 값으로 DataFrame 객체 생성
         6-1 객체내부 정보를 출력
@@ -409,6 +401,18 @@ class MyPandas(object):
                             75%    4.625000   2.750000
                             max    7.000000   3.000000
         '''
+    def animal_df(self) -> object:
+        return pd.DataFrame([['cat', 2.5, 1, 'yes'],
+                             ['cat', 3., 3, 'yes'],
+                             ['snake', .5, 2, 'no'],
+                             ['dog', None, 3, 'yes'],
+                             ['dog', 5., 2, 'no'],
+                             ['cat', 2., 3, 'no'],
+                             ['snake', 4.5, 1, 'no'],
+                             ['cat', None, 1, 'yes'],
+                             ['dog', 7., 2, 'no'],
+                             ['dog', 3., 1, 'no']
+                             ], index=[i for i in string.ascii_lowercase[:10]], columns=['animal', 'age', 'visits', 'priority'])
         '''  
         6-2 객체 상위 3열까지 출력
         ic| df6.iloc[:3]:   animal  age  visits priority
@@ -416,6 +420,10 @@ class MyPandas(object):
                           b    cat  3.0       3      yes
                           c  snake  0.5       2       no
         '''
+    def animal_top_three(self, df: object) -> object:
+        return df.loc[list(df.index)[:3], :]
+
+
         '''  
         6-3 animal과 age 컬럼만 출력
         ic| df6.loc[:, ['animal', 'age']]:   animal  age
@@ -431,6 +439,9 @@ class MyPandas(object):
                                            j    dog  3.0
 
         '''
+    def only_animal_age(self, df):
+        return df.loc[:, ['animal', 'age']]
+
         '''                                                            
         6-4 객체의 3, 4, 8번 행에 해당하는 animal과 age 값만 출력
         ic| df6.loc[df6.index[[3,4,8]], ['animal','age']]:   animal  age
@@ -438,6 +449,9 @@ class MyPandas(object):
                                                            e    dog  5.0
                                                            i    dog  7.0
         '''
+    def animal_age_348(self, df):
+        return df.loc[df.index[[3, 4, 8]], ['animal', 'age']]
+
         ''' 
         6-5 visit 컬럼에서 3 초과하는 값 출력
         ic| df6[df6['visits']>2]:   animal  age  visits priority
@@ -445,18 +459,25 @@ class MyPandas(object):
                                   d    dog  NaN       3      yes
                                   f    cat  2.0       3       no
         '''
+    def visit_over_3(self, df):
+        return df[df['visits']>2]
         ''' 
         6-6 age 에서 NaN 값 출력
         ic| df6[df6['age'].isnull()]:   animal  age  visits priority
                                       d    dog  NaN       3      yes
                                       h    cat  NaN       1      yes
         '''
+    def age_nan(self, df):
+        return df[df['age'].isnull()]
         '''         
         6-7 age가 3살 미만 고양이값 출력
         ic| df6[(df6['age'] <3) & (df6['animal'] =='cat')]:   animal  age  visits priority
                                                             a    cat  2.5       1      yes
                                                             f    cat  2.0       3       no
         '''
+    def cat_of_age_under_3(self, df):
+        return df[[df['age']<3] and df['animal']=='cat']
+
         '''        
         6-8 age가 2살이상 4살 미만인 값 출력
         ic| df6[df6['age'].between(2,4)]:   animal  age  visits priority
